@@ -23,6 +23,3 @@ def nettoyer_mails(mails):
             if mail != "spam" and mail != "pub":
                 res.append(mail)
     return res
-
-nettoyer_mails.py
-
