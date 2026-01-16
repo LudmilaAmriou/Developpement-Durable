@@ -13,5 +13,5 @@ jobs:
           python-version: "3.10"
       - name: Run tests
         run: |
-          python Exercices-Expert/tests/test_plus_longue_sous_sequence.py
-          python Exercices-Expert/tests/test_max_somme_contigue.py
+          python -m Exercices_Expert.tests.test_plus_longue_sous_sequence
+          python -m Exercices_Expert.tests.test_max_somme_contigue

@@ -27,3 +27,5 @@ def tri_eco(lst):
                 # Échanger si l'ordre est incorrect
                 lst[j], lst[j+1] = lst[j+1], lst[j]
     return lst
+
+
