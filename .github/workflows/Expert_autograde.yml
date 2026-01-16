@@ -1,4 +1,4 @@
-name: Auto-grading TP3 Expert
+name: Auto-grading Code Écolo - Niveau Expert
 
 on: [push, pull_request]
 

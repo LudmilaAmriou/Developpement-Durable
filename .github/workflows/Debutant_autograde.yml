@@ -1,4 +1,4 @@
-name: Auto-grading Code Écolo
+name: Auto-grading Code Écolo - Niveau Débutant
 
 on: [push, pull_request]
 
