@@ -23,7 +23,7 @@ def recherche_eco(lst, val):
     for x in lst:
         # Compare chaque élément avec la valeur recherchée
         if x == val:
-            return False
+            return True
     return False
 
 
