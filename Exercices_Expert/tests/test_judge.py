@@ -337,7 +337,7 @@ def run_all_tests():
     report_md = generate_markdown_report(results, avg_score, passed)
     
     # Save to file
-    report_filename = "ECO_REPORT.md"
+    report_filename = "ECO_REPORT_EXPERT.md"
     try:
         with open(report_filename, 'w', encoding='utf-8') as f:
             f.write(report_md)
