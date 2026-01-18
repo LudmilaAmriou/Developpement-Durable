@@ -1,19 +1,19 @@
 # Rapport Éco-Coding - Exercices Avancé
 
-![Score](https://img.shields.io/badge/Score-0%25-red?style=for-the-badge)
-![Grade](https://img.shields.io/badge/Note-F-red?style=for-the-badge)
+![Score](https://img.shields.io/badge/Score-50%25-orange?style=for-the-badge)
+![Grade](https://img.shields.io/badge/Note-D-orange?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-ÉCHOUÉ-critical?style=for-the-badge)
 
-**Date:** 2026-01-18 02:17:26  
+**Date:** 2026-01-18 03:47:23  
 **Niveau:** Avancé  
-**Moyenne:** 0.5/100  
-**Note:** F
+**Moyenne:** 50.0/100  
+**Note:** D
 
 ---
 
 ## Résultat Global
 
-> ÉCHEC - Algorithmes catastrophiques!
+> Insuffisant - Revois les algorithmes
 
 **Validation:** Exercices NON VALIDÉS
 
@@ -24,7 +24,7 @@
 | Exercice | Score | Status | Barre de Progression |
 |----------|-------|--------|---------------------|
 | `fusion_listes` | **0/100** | FAIL | ░░░░░░░░░░░░░░░░░░░░ |
-| `trouver_sous_sequence` | **1/100** | FAIL | ░░░░░░░░░░░░░░░░░░░░ |
+| `trouver_sous_sequence` | **100/100** | OK | ████████████████████ |
 
 ---
 
@@ -41,9 +41,11 @@ Ton code gaspille BEAUCOUP d'énergie!
 
 ## Exercices par Score
 
+### Excellent (≥90)
+- `trouver_sous_sequence` (100/100)
+
 ### À Refaire (<60)
 - `fusion_listes` (0/100) - **OPTIMISATION REQUISE**
-- `trouver_sous_sequence` (1/100) - **OPTIMISATION REQUISE**
 
 
 ---
@@ -68,7 +70,7 @@ Ton code gaspille BEAUCOUP d'énergie!
 
 <div align="center">
 
-**Rapport généré automatiquement le 18/01/2026 à 02:17**  
+**Rapport généré automatiquement le 18/01/2026 à 03:47**  
 🌱 *Code écologique = Planète préservée* 🌍
 
 
