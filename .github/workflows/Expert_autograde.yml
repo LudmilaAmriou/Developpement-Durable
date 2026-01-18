@@ -26,19 +26,19 @@ jobs:
         run: |
           python -m Exercices_Expert.tests.test_judge
 
-      - name: Commit du rapport Expert
+      - name: Commit du rapport
         if: always()
         run: |
-          REPORT_FILE="ECO_REPORT_EXPERT.md"
+          REPORT_FILE="ECO_REPORT_EXPERT.md" 
           if [ -f "$REPORT_FILE" ]; then
             git config --local user.email "action@github.com"
             git config --local user.name "Bot Éco-Coding"
             git add "$REPORT_FILE"
+            # Commit only if there are changes
+            git diff --quiet && git diff --staged --quiet || git commit -m "💎 Mise à jour $REPORT_FILE [skip ci]"
+            # Push safely to current branch (force if needed)
             CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-            git fetch origin "$CURRENT_BRANCH"
-            git rebase origin/"$CURRENT_BRANCH"
-            git diff --quiet && git diff --staged --quiet || git commit -m "💎 Mise à jour Rapport Expert [skip ci]"
-            git push origin "$CURRENT_BRANCH"
+            git push origin "$CURRENT_BRANCH" --force
           else
             echo "⚠️ $REPORT_FILE not found, skipping commit"
           fi
