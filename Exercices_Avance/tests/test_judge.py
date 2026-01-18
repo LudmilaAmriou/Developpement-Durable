@@ -333,7 +333,7 @@ def run_all_tests():
     print()
     print("="*70)
     
-    return 0
+    return 0 if passed else 1
 
 if __name__ == "__main__":
     exit_code = run_all_tests()

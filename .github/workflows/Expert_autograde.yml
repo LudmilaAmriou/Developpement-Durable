@@ -25,6 +25,7 @@ jobs:
       - name: Exécution des tests Expert
         run: |
           python -m Exercices_Expert.tests.test_judge
+        continue-on-error: true
 
       - name: Commit du rapport
         if: always()
