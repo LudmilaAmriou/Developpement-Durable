@@ -24,17 +24,21 @@ jobs:
 
       - name: Exécution des tests Avancé
         run: |
-          python -m Exercices_Avance.tests.test_judge
+          python -m Exercices_Avance.tests.test_judge_avance
 
       - name: Commit du rapport Avancé
         if: always()
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "Bot Éco-Coding"
-          if [ -f ECO_REPORT_AVANCE.md ]; then
-            git add ECO_REPORT_AVANCE.md
+          REPORT_FILE="ECO_REPORT_AVANCE.md"
+          if [ -f "$REPORT_FILE" ]; then
+            git config --local user.email "action@github.com"
+            git config --local user.name "Bot Éco-Coding"
+            git add "$REPORT_FILE"
+            CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+            git fetch origin "$CURRENT_BRANCH"
+            git rebase origin/"$CURRENT_BRANCH"
             git diff --quiet && git diff --staged --quiet || git commit -m "🚀 Mise à jour Rapport Avancé [skip ci]"
-            git push
+            git push origin "$CURRENT_BRANCH"
           else
-            echo "⚠️ ECO_REPORT_AVANCE.md not found, skipping commit"
+            echo "⚠️ $REPORT_FILE not found, skipping commit"
           fi
