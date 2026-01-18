@@ -17,29 +17,32 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Configuration Python
+      - name: Setup Python
         uses: actions/setup-python@v2
         with:
           python-version: "3.10"
 
-      - name: Exécution des tests Expert
+      - name: Run Expert Tests
         run: |
           python -m Exercices_Expert.tests.test_judge
         continue-on-error: true
 
-      - name: Commit du rapport
+      - name: Commit and Push Report
         if: always()
         run: |
-          REPORT_FILE="ECO_REPORT_EXPERT.md" 
+          REPORT_FILE="ECO_REPORT_EXPERT.md"
           if [ -f "$REPORT_FILE" ]; then
             git config --local user.email "action@github.com"
             git config --local user.name "Bot Éco-Coding"
             git add "$REPORT_FILE"
+            
             # Commit only if there are changes
-            git diff --quiet && git diff --staged --quiet || git commit -m "💎 Mise à jour $REPORT_FILE [skip ci]"
-            # Push safely to current branch (force if needed)
-            CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-            git push origin "$CURRENT_BRANCH" --force
+            if ! git diff --quiet --cached; then
+              git commit -m "💎 Mise à jour $REPORT_FILE [skip ci]"
+            fi
+
+            # Push to the branch that triggered the workflow
+            git push origin HEAD:"${GITHUB_REF_NAME#refs/heads/}" --force-with-lease
           else
             echo "⚠️ $REPORT_FILE not found, skipping commit"
           fi
