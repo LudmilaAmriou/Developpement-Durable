@@ -31,6 +31,10 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "Bot Éco-Coding"
-          git add ECO_REPORT_EXPERT.md
-          git diff --quiet && git diff --staged --quiet || git commit -m "💎 Mise à jour Rapport Expert [skip ci]"
-          git push
+          if [ -f ECO_REPORT_EXPERT.md ]; then
+            git add ECO_REPORT_EXPERT.md
+            git diff --quiet && git diff --staged --quiet || git commit -m "💎 Mise à jour Rapport Expert [skip ci]"
+            git push
+          else
+            echo "⚠️ ECO_REPORT_EXPERT.md not found, skipping commit"
+          fi
