@@ -149,7 +149,7 @@ def run_tests():
     else:
         print("📚 Revois les structures de données (set vs list)")
     
-    return eco_score >= 60
+    return eco_score
 
 if __name__ == "__main__":
     run_tests()

@@ -101,7 +101,7 @@ def run_tests():
     else:
         print("📚 Relis la consigne sur l'optimisation avec set")
     
-    return eco_score >= 60
+    return eco_score
 
 if __name__ == "__main__":
     run_tests()

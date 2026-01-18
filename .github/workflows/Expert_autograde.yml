@@ -1,17 +1,36 @@
-name: Auto-grading Code Écolo - Niveau Expert
+name: 💎 Éco-Coding - Niveau Expert
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - "Exercices_Expert/**"
+  pull_request:
+    paths:
+      - "Exercices_Expert/**"
+
+permissions:
+  contents: write
 
 jobs:
-  build:
+  test-expert:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python
+
+      - name: Configuration Python
         uses: actions/setup-python@v2
         with:
           python-version: "3.10"
-      - name: Run tests
+
+      - name: Exécution des tests Expert
         run: |
-          python -m Exercices_Expert.tests.test_plus_longue_sous_sequence
-          python -m Exercices_Expert.tests.test_max_somme_contigue
+          python test_judge.py
+
+      - name: Commit du rapport Expert
+        if: always()
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Bot Éco-Coding"
+          git add ECO_REPORT_EXPERT.md
+          git diff --quiet && git diff --staged --quiet || git commit -m "💎 Mise à jour Rapport Expert [skip ci]"
+          git push

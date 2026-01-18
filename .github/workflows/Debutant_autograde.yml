@@ -1,21 +1,36 @@
-name: Auto-grading Code Écolo - Niveau Débutant
+name: 🌱 Éco-Coding - Niveau Débutant
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - "Exercices_Debutant/**"
+  pull_request:
+    paths:
+      - "Exercices_Debutant/**"
+
+permissions:
+  contents: write
 
 jobs:
-  build:
+  test-debutant:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python
+
+      - name: Configuration Python
         uses: actions/setup-python@v2
         with:
           python-version: "3.10"
-      - name: Run tests
+
+      - name: Exécution des tests Débutant
         run: |
-          python -m Exercices_Debutant.tests.test_tri_eco
-          python -m Exercices_Debutant.tests.test_supprimer_doublons
-          python -m Exercices_Debutant.tests.test_total_streaming
-          python -m Exercices_Debutant.tests.test_moteur_eco
-          python -m Exercices_Debutant.tests.test_nettoyer_mails
-          python -m Exercices_Debutant.tests.test_limiter_photos
+          python test_judge.py
+
+      - name: Commit du rapport Débutant
+        if: always()
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Bot Éco-Coding"
+          git add ECO_REPORT_DEBUTANT.md
+          git diff --quiet && git diff --staged --quiet || git commit -m "📊 Mise à jour Rapport Débutant [skip ci]"
+          git push

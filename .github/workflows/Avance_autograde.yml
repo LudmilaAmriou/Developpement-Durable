@@ -1,17 +1,36 @@
-name: Auto-grading TP2 Avancé
+name: 🚀 Éco-Coding - Niveau Avancé
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - "Exercices_Avance/**"
+  pull_request:
+    paths:
+      - "Exercices_Avance/**"
+
+permissions:
+  contents: write
 
 jobs:
-  build:
+  test-avance:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Python
+
+      - name: Configuration Python
         uses: actions/setup-python@v2
         with:
           python-version: "3.10"
-      - name: Run tests
+
+      - name: Exécution des tests Avancé
         run: |
-          python -m Exercices_Avance.tests.test_trouver_sous_sequence
-          python -m Exercices_Avance.tests.test_compte_frequence
+          python test_judge.py
+
+      - name: Commit du rapport Avancé
+        if: always()
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Bot Éco-Coding"
+          git add ECO_REPORT_AVANCE.md
+          git diff --quiet && git diff --staged --quiet || git commit -m "🚀 Mise à jour Rapport Avancé [skip ci]"
+          git push

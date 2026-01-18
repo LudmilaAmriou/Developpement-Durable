@@ -79,7 +79,7 @@ def run_tests():
     else:
         print("📚 Améliore ton code pour qu'il soit plus éco-responsable")
 
-    return eco_score >= 60
+    return eco_score
 
 if __name__ == "__main__":
     run_tests()

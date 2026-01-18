@@ -155,7 +155,7 @@ def run_tests():
     else:
         print("📚 Utilise un set ou dict pour O(1) lookup!")
     
-    return eco_score >= 60
+    return eco_score
 
 if __name__ == "__main__":
     run_tests()

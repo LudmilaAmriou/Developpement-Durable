@@ -148,7 +148,7 @@ def run_tests():
     else:
         print("📚 Revois les built-ins Python et le filtrage")
     
-    return eco_score >= 60
+    return eco_score
 
 if __name__ == "__main__":
     run_tests()

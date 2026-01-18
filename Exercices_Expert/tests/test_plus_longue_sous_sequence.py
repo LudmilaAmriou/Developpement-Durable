@@ -65,7 +65,7 @@ def run_tests():
     else:
         print("📚 Besoin d’optimisation !")
 
-    return eco_score >= 60
+    return eco_score 
 
 if __name__ == "__main__":
     run_tests()

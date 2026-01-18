@@ -75,7 +75,6 @@ def run_tests():
         # Optimal O(n log n) - using efficient sort
         print("✅ TRÈS ÉCOLO - Complexité O(n log n) détectée!")
         print("   → Tu utilises un algorithme de tri efficace")
-        print("   → Probablement: sorted(), .sort(), ou merge/quick sort")
         print("   → Algorithme optimal!")
         eco_score = 100
         
@@ -123,10 +122,10 @@ def run_tests():
         print("   ❌ Avec 1000 éléments = 1 million de comparaisons!")
         print()
         print("   Solutions optimales O(n log n):")
-        print("   ✅ Utilise les fonctions Python intégré")
         print("   ✅ Implémente merge sort ou quick sort")
+        print("   ✅ Avec 1000 éléments = seulement ~10,000 comparaisons")
         print()
-     
+    
     
     print(f"\n🌱 ECO-SCORE: {eco_score}/100")
     
@@ -139,7 +138,7 @@ def run_tests():
     else:
         print("📚 Bubble sort n'est PAS éco-responsable!")
     
-    return eco_score >= 60
+    return eco_score 
 
 if __name__ == "__main__":
     run_tests()
