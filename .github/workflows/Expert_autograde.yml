@@ -27,7 +27,7 @@ jobs:
           python -m Exercices_Expert.tests.test_judge
         continue-on-error: true
 
-      - name: Commit and Push Report
+      - name: Commit du rapport
         if: always()
         run: |
           REPORT_FILE="ECO_REPORT_EXPERT.md"
@@ -35,14 +35,13 @@ jobs:
             git config --local user.email "action@github.com"
             git config --local user.name "Bot Éco-Coding"
             git add "$REPORT_FILE"
-            
+            # Pull remote changes first to avoid stale refs
+            CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+            git fetch origin "$CURRENT_BRANCH"
+            git reset --soft origin/"$CURRENT_BRANCH"
             # Commit only if there are changes
-            if ! git diff --quiet --cached; then
-              git commit -m "💎 Mise à jour $REPORT_FILE [skip ci]"
-            fi
-
-            # Push to the branch that triggered the workflow
-            git push origin HEAD:"${GITHUB_REF_NAME#refs/heads/}" --force-with-lease
+            git diff --quiet && git diff --staged --quiet || git commit -m "💎 Mise à jour $REPORT_FILE [skip ci]"
+            git push origin "$CURRENT_BRANCH"
           else
             echo "⚠️ $REPORT_FILE not found, skipping commit"
           fi

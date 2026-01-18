@@ -16,6 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref_name }} # Checkout the branch that triggered the workflow
 
       - name: Configuration Python
         uses: actions/setup-python@v2
@@ -25,22 +27,25 @@ jobs:
       - name: Exécution des tests Avancé
         run: |
           python -m Exercices_Avance.tests.test_judge
-
         continue-on-error: true
 
       - name: Commit du rapport
         if: always()
         run: |
-          REPORT_FILE="ECO_REPORT_AVANCE.md"  
+          REPORT_FILE="ECO_REPORT_AVANCE.md"
           if [ -f "$REPORT_FILE" ]; then
             git config --local user.email "action@github.com"
             git config --local user.name "Bot Éco-Coding"
             git add "$REPORT_FILE"
-            # Commit only if there are changes
-            git diff --quiet && git diff --staged --quiet || git commit -m "💎 Mise à jour $REPORT_FILE [skip ci]"
-            # Push safely to current branch (force if needed)
+
+            # Pull remote changes first to avoid stale info errors
             CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-            git push origin "$CURRENT_BRANCH" --force
+            git fetch origin "$CURRENT_BRANCH"
+            git reset --soft origin/"$CURRENT_BRANCH"
+
+            # Commit only if changes exist
+            git diff --quiet && git diff --staged --quiet || git commit -m "🚀 Mise à jour $REPORT_FILE [skip ci]"
+            git push origin "$CURRENT_BRANCH"
           else
             echo "⚠️ $REPORT_FILE not found, skipping commit"
           fi
