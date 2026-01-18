@@ -1,0 +1,84 @@
+name: 🌱🚀💎 Éco-Coding - Tous Niveaux
+
+on:
+  push:
+    paths:
+      - "Exercices_Debutant/**"
+      - "Exercices_Avance/**"
+      - "Exercices_Expert/**"
+  pull_request:
+    paths:
+      - "Exercices_Debutant/**"
+      - "Exercices_Avance/**"
+      - "Exercices_Expert/**"
+
+permissions:
+  contents: write
+
+jobs:
+  eco-coding:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      # -----------------------------
+      # DÉBUTANT
+      # -----------------------------
+      - name: Tests Débutant
+        run: |
+          echo "🌱 Running Débutant tests..."
+          python -m Exercices_Debutant.tests.test_judge
+        continue-on-error: true
+
+      # -----------------------------
+      # AVANCÉ
+      # -----------------------------
+      - name: Tests Avancé
+        run: |
+          echo "🚀 Running Avancé tests..."
+          python -m Exercices_Avance.tests.test_judge
+        continue-on-error: true
+
+      # -----------------------------
+      # EXPERT
+      # -----------------------------
+      - name: Tests Expert
+        run: |
+          echo "💎 Running Expert tests..."
+          python -m Exercices_Expert.tests.test_judge
+        continue-on-error: true
+
+      # -----------------------------
+      # COMMIT REPORTS
+      # -----------------------------
+      - name: Commit all reports
+        if: always()
+        run: |
+          echo "📦 Preparing to commit reports..."
+
+          git config --local user.email "action@github.com"
+          git config --local user.name "Bot Éco-Coding"
+
+          # Only add files if they exist
+          [ -f ECO_REPORT_DEBUTANT.md ] && git add ECO_REPORT_DEBUTANT.md
+          [ -f ECO_REPORT_AVANCE.md ] && git add ECO_REPORT_AVANCE.md
+          [ -f ECO_REPORT_EXPERT.md ] && git add ECO_REPORT_EXPERT.md
+
+          # Commit only if something changed
+          if ! git diff --cached --quiet; then
+            git commit -m "🌱🚀💎 Mise à jour rapports Éco-Coding [skip ci]"
+            CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+            git pull --rebase origin "$CURRENT_BRANCH"
+            git push origin "$CURRENT_BRANCH"
+          else
+            echo "✅ No report changes to commit"
+          fi
