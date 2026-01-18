@@ -24,7 +24,7 @@ jobs:
 
       - name: Exécution des tests Avancé
         run: |
-          python -m Exercices_Avance.tests.test_judge_avance
+          python -m Exercices_Avance.tests.test_judge
 
       - name: Commit du rapport Avancé
         if: always()
