@@ -178,7 +178,7 @@ def run_tests():
     else:
         print("📚 Évite les slices dans les boucles!")
     
-    return eco_score >= 60
+    return eco_score
 
 if __name__ == "__main__":
     run_tests()

@@ -20,18 +20,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout current branch
+      # -----------------------------
+      # CHECKOUT
+      # -----------------------------
+      - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ github.head_ref || github.ref_name || 'main' }}
+          fetch-depth: 0 # Full history for pushing commits
 
+      # -----------------------------
+      # SETUP PYTHON
+      # -----------------------------
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
       # -----------------------------
-      # DÉBUTANT
+      # DÉBUTANT TESTS
       # -----------------------------
       - name: Tests Débutant
         run: |
@@ -40,7 +47,7 @@ jobs:
         continue-on-error: true
 
       # -----------------------------
-      # AVANCÉ
+      # AVANCÉ TESTS
       # -----------------------------
       - name: Tests Avancé
         run: |
@@ -49,7 +56,7 @@ jobs:
         continue-on-error: true
 
       # -----------------------------
-      # EXPERT
+      # EXPERT TESTS
       # -----------------------------
       - name: Tests Expert
         run: |
@@ -58,27 +65,32 @@ jobs:
         continue-on-error: true
 
       # -----------------------------
-      # COMMIT REPORTS
+      # COMMIT REPORTS (FORCE)
       # -----------------------------
+
       - name: Commit all reports
         if: always()
+        shell: bash
         run: |
           echo "📦 Preparing to commit reports..."
 
           git config --local user.email "action@github.com"
           git config --local user.name "Bot Éco-Coding"
 
-          # Only add files if they exist
-          [ -f ECO_REPORT_DEBUTANT.md ] && git add ECO_REPORT_DEBUTANT.md
-          [ -f ECO_REPORT_AVANCE.md ] && git add ECO_REPORT_AVANCE.md
-          [ -f ECO_REPORT_EXPERT.md ] && git add ECO_REPORT_EXPERT.md
+          # Use bash-friendly variable syntax
+          CURRENT_BRANCH="${GITHUB_HEAD_REF:-${GITHUB_REF_NAME:-main}}"
+          git fetch origin "$CURRENT_BRANCH"
+          git checkout "$CURRENT_BRANCH"
 
-          # Commit only if something changed
+          # Add report files if they exist
+          if [ -f "ECO_REPORT_DEBUTANT.md" ]; then git add ECO_REPORT_DEBUTANT.md; fi
+          if [ -f "ECO_REPORT_AVANCE.md" ]; then git add ECO_REPORT_AVANCE.md; fi
+          if [ -f "ECO_REPORT_EXPERT.md" ]; then git add ECO_REPORT_EXPERT.md; fi
+
+          # Commit only if changes exist
           if ! git diff --cached --quiet; then
             git commit -m "🌱🚀💎 Mise à jour rapports Éco-Coding [skip ci]"
-            CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-            git pull --rebase origin "$CURRENT_BRANCH"
             git push origin "$CURRENT_BRANCH"
           else
-            echo "✅ No report changes to commit"
+            echo "✅ Reports are up-to-date, nothing to commit"
           fi
