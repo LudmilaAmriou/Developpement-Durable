@@ -11,7 +11,7 @@ from datetime import datetime
 
 # Liste des tests Avancé
 AVANCE_TESTS = [
-    'Exercices_Avance.tests.test_fusion_listes',
+    'Exercices_Avance.tests.test_compte_frequence',
     'Exercices_Avance.tests.test_trouver_sous_sequence',
 ]
 

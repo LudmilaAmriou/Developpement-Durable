@@ -11,13 +11,12 @@ from datetime import datetime
 
 # List of all test modules
 DEBUTANT_TESTS = [
-    'Exercices_Debutant.tests.test_recherche_eco',
+    'Exercices_Debutant.tests.test_moteur_eco',
     'Exercices_Debutant.tests.test_nettoyer_mails',
     'Exercices_Debutant.tests.test_tri_eco',
-    'Exercices_Debutant.tests.test_somme_streaming',
+    'Exercices_Debutant.tests.test_total_streaming',
     'Exercices_Debutant.tests.test_supprimer_doublons',
-    'Exercices_Debutant.tests.test_limiter_photos',
-    'Exercices_Debutant.tests.test_compte_frequence',
+    'Exercices_Debutant.tests.test_limiter_photos'
 ]
 
 def generate_markdown_report(results, avg_score, passed):
