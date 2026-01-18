@@ -24,7 +24,7 @@ jobs:
 
       - name: Exécution des tests Débutant
         run: |
-          python test_judge.py
+          python -m Exercices_Debutant.tests.test_judge
 
       - name: Commit du rapport Débutant
         if: always()
