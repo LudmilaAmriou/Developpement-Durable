@@ -1,21 +1,21 @@
 # Rapport Éco-Coding - Exercices Avancé
 
-![Score](https://img.shields.io/badge/Score-50%25-orange?style=for-the-badge)
-![Grade](https://img.shields.io/badge/Note-D-orange?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-ÉCHOUÉ-critical?style=for-the-badge)
+![Score](https://img.shields.io/badge/Score-65%25-yellow?style=for-the-badge)
+![Grade](https://img.shields.io/badge/Note-C-yellow?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-VALIDÉ-success?style=for-the-badge)
 
-**Date:** 2026-01-18 03:47:23  
+**Date:** 2026-01-18 03:50:04  
 **Niveau:** Avancé  
-**Moyenne:** 50.0/100  
-**Note:** D
+**Moyenne:** 65.0/100  
+**Note:** C
 
 ---
 
 ## Résultat Global
 
-> Insuffisant - Revois les algorithmes
+> Passable - Beaucoup d'améliorations nécessaires
 
-**Validation:** Exercices NON VALIDÉS
+**Validation:** Exercices VALIDÉS
 
 ---
 
@@ -23,19 +23,18 @@
 
 | Exercice | Score | Status | Barre de Progression |
 |----------|-------|--------|---------------------|
-| `fusion_listes` | **0/100** | FAIL | ░░░░░░░░░░░░░░░░░░░░ |
+| `compte_frequence` | **30/100** | FAIL | ██████░░░░░░░░░░░░░░ |
 | `trouver_sous_sequence` | **100/100** | OK | ████████████████████ |
 
 ---
 
 ## 🌱 Impact Écologique
 
-### ❌ Impact Élevé!
-Ton code gaspille BEAUCOUP d'énergie!
-- Algorithmes inefficaces détectés
-- Forte consommation CPU
-- Empreinte carbone importante 🏭
-- **ACTION REQUISE:** Optimise tes algorithmes!
+### ⚠️ Impact Modéré
+Ton code fonctionne mais peut être plus efficace.
+- Quelques algorithmes à optimiser
+- Consommation CPU moyenne
+- Chaque optimisation = moins d'énergie consommée 💡
 
 ---
 
@@ -45,32 +44,33 @@ Ton code gaspille BEAUCOUP d'énergie!
 - `trouver_sous_sequence` (100/100)
 
 ### À Refaire (<60)
-- `fusion_listes` (0/100) - **OPTIMISATION REQUISE**
+- `compte_frequence` (30/100) - **OPTIMISATION REQUISE**
 
 
 ---
 
 ## Recommandations
 
-### Priorité: Revoir les algorithmes avancés
-1. Étudie les algorithmes classiques (merge, binary search, etc.)
-2. Identifie les complexités O(n²) et O(n×m)
-3. Exploite les propriétés des données (déjà trié, etc.)
-4. Pense "divide and conquer" et optimisations
+### Améliorations possibles
+1. Optimise les exercices avec score < 80
+2. Compare ton code avec les solutions optimales
+3. Cherche les optimisations O(n) vs O(n log n)
+4. Évite les copies inutiles et les slicing en boucle
 
 ---
 
 ## Prochaines Étapes
 
-- Retravaille les exercices avec score < 60
-- Retente le test une fois optimisé
-- Objectif: Moyenne ≥ 60/100
+- Exercices Avancé validés!
+- Tu peux passer aux **Exercices Expert**
+- Ou améliorer tes scores existants pour viser le 100/100
+- Le niveau Expert te mettra face aux algorithmes les plus complexes!
 
 ---
 
 <div align="center">
 
-**Rapport généré automatiquement le 18/01/2026 à 03:47**  
+**Rapport généré automatiquement le 18/01/2026 à 03:50**  
 🌱 *Code écologique = Planète préservée* 🌍
 
 
